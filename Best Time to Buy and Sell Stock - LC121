@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int days = prices.size();
+
+        int profit;
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        for (int day = 1; day < days; ++day) {
+            profit = prices[day] - minPrice;
+            maxProfit = max(maxProfit, profit);
+            minPrice = min(minPrice, prices[day]);
+        }
+        
+        return maxProfit;
+    }
+};
