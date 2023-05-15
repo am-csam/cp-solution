@@ -11,12 +11,12 @@ public:
         sort(intervals.begin(), intervals.end(), compareIntervals);
         for (vector<int> interval: intervals) {
             if ( mergedIntervals.empty()
-                || mergedIntervals.back().back() < interval.front()) {
+                || mergedIntervals.back()[1] < interval[0]) {
 
                 mergedIntervals.push_back(interval);
             }
             else {
-                mergedIntervals.back().back() = max(mergedIntervals.back().back(), interval.back());
+                mergedIntervals.back()[1] = max(mergedIntervals.back()[1], interval[1]);
             }
         }
         return mergedIntervals;
