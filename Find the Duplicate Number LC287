@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int n = nums.size();
+        int i1 = 0;
+        int i2 = 0;
+
+        do {
+            i1 = nums[i1];
+            i2 = nums[nums[i2]];
+        } while (i1 != i2);
+
+        i1 = 0;
+        while (i1 != i2) {
+            i1 = nums[i1];
+            i2 = nums[i2];
+        }
+
+        return i1;
+    }
+};
