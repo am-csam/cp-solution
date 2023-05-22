@@ -1,0 +1,34 @@
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    
+    int n = A.size();
+    int sum = 0;
+    long squaresSum = 0;
+    for(auto &num: A) {
+        sum += num;
+        squaresSum += num * num;
+    }
+    
+    // Formula for sum of n numbere is (n * (n + 1)) / 2
+    int originalSum = (n * (n + 1)) / 2;
+    // Formula for sum of n squared numbere is (n * (n + 1) * ((2 * n) + 1)) / 6
+    long originalSquaresSum = (n * (n + 1) * ((2 * n) + 1)) / 6;
+        
+    //sumDiff           = originalSum - sum                 = missingNum - doubledNum
+    int sumDiff = originalSum - sum;
+    
+    //squaresSumDiff    = originalSquaresSum - squaresSum   = (missingNum - doubledNum) * (missingNum + doubledNum)
+    int squaresSumDiff = originalSquaresSum - squaresSum;
+    
+    //diffDiv = squaresSumDiff / sumDiff = (missingNum + doubledNum)
+    int diffDiv = squaresSumDiff / sumDiff;
+    
+    //sumDiff = missingNum - doubledNum
+    //diffDiv = missingNum + doubledNum
+    
+    //missingNum = ((missingNum + doubledNum) + (missingNum - doubledNum)) / 2
+    int missingNum = (diffDiv + sumDiff) / 2;
+    //doubledNum = ((missingNum + doubledNum) - (missingNum - doubledNum)) / 2
+    int doubledNum = (diffDiv - sumDiff) / 2;  
+    
+    return {doubledNum, missingNum};
+}
